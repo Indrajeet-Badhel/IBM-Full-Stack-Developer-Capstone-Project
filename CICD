@@ -1,0 +1,136 @@
+curl.exe https://api.github.com/repos/Indrajeet-Badhel/IBM-Full-Stack-Developer-Capstone-Project/actions/runs/40100411044/jobs
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 120891230752,
+      "run_id": 40100411044,
+      "workflow_name": "Django and React CI",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/Indrajeet-Badhel/IBM-Full-Stack-Developer-Capstone-Project/actions/runs/40100411044",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVV4XDM8AAAAcJa3KIA",
+      "head_sha": "f31e06b54214fb855a54742050ca46bbef4eb1a3",
+      "url": "https://api.github.com/repos/Indrajeet-Badhel/IBM-Full-Stack-Developer-Capstone-Project/actions/jobs/120891230752",
+      "html_url": "https://github.com/Indrajeet-Badhel/IBM-Full-Stack-Developer-Capstone-Project/actions/runs/40100411044/job/120891230752",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-24T13:58:12Z",
+      "started_at": "2026-10-24T13:58:13Z",
+      "completed_at": "2026-10-24T13:59:00Z",
+      "name": "verify",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-24T13:58:14Z",
+          "completed_at": "2026-10-24T13:58:14Z"
+        },
+        {
+          "name": "Check out repository",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-24T13:58:14Z",
+          "completed_at": "2026-10-24T13:58:15Z"
+        },
+        {
+          "name": "Set up Python",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-24T13:58:15Z",
+          "completed_at": "2026-10-24T13:58:15Z"
+        },
+        {
+          "name": "Install Django dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-24T13:58:15Z",
+          "completed_at": "2026-10-24T13:58:23Z"
+        },
+        {
+          "name": "Validate Django project",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-24T13:58:23Z",
+          "completed_at": "2026-10-24T13:58:25Z"
+        },
+        {
+          "name": "Set up Node",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-24T13:58:25Z",
+          "completed_at": "2026-10-24T13:58:29Z"
+        },
+        {
+          "name": "Build React frontend",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-24T13:58:29Z",
+          "completed_at": "2026-10-24T13:58:58Z"
+        },
+        {
+          "name": "Post Set up Node",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-24T13:58:58Z",
+          "completed_at": "2026-10-24T13:58:58Z"
+        },
+        {
+          "name": "Post Set up Python",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-24T13:58:58Z",
+          "completed_at": "2026-10-24T13:58:58Z"
+        },
+        {
+          "name": "Post Check out repository",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-24T13:58:58Z",
+          "completed_at": "2026-10-24T13:58:58Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-24T13:58:58Z",
+          "completed_at": "2026-10-24T13:58:58Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Indrajeet-Badhel/IBM-Full-Stack-Developer-Capstone-Project/check-runs/120891230752",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000000113,
+      "runner_name": "GitHub Actions 1000000113",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}
+
+Workflow steps:
+
+.github\workflows\ci.yml:1:name: Django and React CI
+.github\workflows\ci.yml:11:      - name: Check out repository
+.github\workflows\ci.yml:13:      - name: Set up Python
+.github\workflows\ci.yml:17:      - name: Install Django dependencies
+.github\workflows\ci.yml:18:        run: pip install -r server/requirements.txt
+.github\workflows\ci.yml:19:      - name: Validate Django project
+.github\workflows\ci.yml:21:        run: python manage.py check
+.github\workflows\ci.yml:22:      - name: Set up Node
+.github\workflows\ci.yml:26:      - name: Build React frontend
+.github\workflows\ci.yml:28:        run: npm ci && CI=false npm run build
+
