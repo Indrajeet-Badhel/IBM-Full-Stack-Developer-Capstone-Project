@@ -1,7 +1,5 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.contrib import admin
-from .models import CarMake, CarModel
 
 
 class CarMake(models.Model):
@@ -39,7 +37,3 @@ class CarModel(models.Model):
     def __str__(self):
         return self.name  # Return the name as the string representation
 
-
-# Registering models with their respective admins
-admin.site.register(CarMake)
-admin.site.register(CarModel)

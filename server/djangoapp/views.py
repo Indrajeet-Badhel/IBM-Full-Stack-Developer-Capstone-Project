@@ -23,12 +23,17 @@ logger = logging.getLogger(__name__)
 @csrf_exempt
 def login_user(request):
     # Get username and password from request.POST dictionary
-    data = json.loads(request.body)
-    username = data['userName']
-    password = data['password']
+    if request.method != 'POST':
+        return JsonResponse({'error': 'POST required'}, status=405)
+    try:
+        data = json.loads(request.body)
+        username = data['userName']
+        password = data['password']
+    except (json.JSONDecodeError, KeyError):
+        return JsonResponse({'error': 'Username and password are required'}, status=400)
     # Try to check if provide credential can be authenticated
     user = authenticate(username=username, password=password)
-    data = {"userName": username}
+    data = {"userName": username, "error": "Invalid credentials"}
     if user is not None:
         # If user is valid, call login method to login current user
         login(request, user)
@@ -46,12 +51,17 @@ def logout_request(request):
 def registration(request):
     context = {}
 
-    data = json.loads(request.body)
-    username = data['userName']
-    password = data['password']
-    first_name = data['firstName']
-    last_name = data['lastName']
-    email = data['email']
+    if request.method != 'POST':
+        return JsonResponse({'error': 'POST required'}, status=405)
+    try:
+        data = json.loads(request.body)
+        username = data['userName']
+        password = data['password']
+        first_name = data['firstName']
+        last_name = data['lastName']
+        email = data['email']
+    except (json.JSONDecodeError, KeyError):
+        return JsonResponse({'error': 'All registration fields are required'}, status=400)
     username_exist = False
     email_exist = False
     try:

@@ -1,0 +1,14 @@
+curl.exe -i -c cookies.txt -H "Content-Type: application/json" -d "{...}" http://localhost:8000/djangoapp/login
+HTTP/1.1 200 OK
+Date: Sat, 24 Oct 2026 13:56:25 GMT
+Server: WSGIServer/0.2 CPython/3.10.0
+Content-Type: application/json
+X-Frame-Options: DENY
+Content-Length: 55
+Vary: Cookie
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+Set-Cookie:  sessionid=ydgq1p0pdf72l67bdiznc0up3zurnt1a; expires=Sat, 07 Nov 2026 13:56:25 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax
+
+{"userName": "capstoneuser", "status": "Authenticated"}
