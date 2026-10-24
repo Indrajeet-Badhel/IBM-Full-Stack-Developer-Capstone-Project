@@ -1,25 +1,21 @@
-    FROM python:3.12.0-slim-bookworm
+# Build the React client first, then serve it through Django in the final image.
+FROM node:20-alpine AS frontend-build
+WORKDIR /app/frontend
+COPY frontend/package*.json ./
+RUN npm ci
+COPY frontend/ ./
+RUN npm run build
 
-    ENV PYTHONBUFFERED 1
-    ENV PYTHONWRITEBYTECODE 1
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+WORKDIR /app
 
-    ENV APP=/app
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . ./
+COPY --from=frontend-build /app/frontend/build ./frontend/build
+RUN chmod +x /app/entrypoint.sh
 
-    # Change the workdir.
-    WORKDIR $APP
-
-    # Install the requirements
-    COPY requirements.txt $APP
-
-    RUN pip3 install -r requirements.txt
-
-    # Copy the rest of the files
-    COPY . $APP
-
-    EXPOSE 8000
-
-    RUN chmod +x /app/entrypoint.sh
-
-    ENTRYPOINT ["/bin/bash","/app/entrypoint.sh"]
-
-    CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "djangoproj.wsgi"]
+EXPOSE 8000
+ENTRYPOINT ["/bin/sh", "/app/entrypoint.sh"]
+CMD ["/bin/sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-8000} --workers 3 djangoproj.wsgi:application"]
