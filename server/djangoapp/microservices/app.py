@@ -1,8 +1,12 @@
 from flask import Flask
 from nltk.sentiment import SentimentIntensityAnalyzer
+import nltk
 import json
+import os
 app = Flask("Sentiment Analyzer")
 
+# Use the bundled VADER lexicon when the service runs on a cloud platform.
+nltk.data.path.append(os.path.dirname(__file__))
 sia = SentimentIntensityAnalyzer()
 
 
@@ -32,4 +36,4 @@ def analyze_sentiment(input_txt):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5050, debug=False)
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", "5050")), debug=False)
